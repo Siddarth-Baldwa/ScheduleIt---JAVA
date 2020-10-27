@@ -57,6 +57,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
         String phoneNo = regPhoneNo.getEditText().getText().toString();
         String password = regPassword.getEditText().getText().toString();
         String profession = regProfession.getEditText().getText().toString();
+
+        Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
+        intent.putExtra("phoneNo", phoneNo);
+        startActivity(intent);
+
         UserHelperClass helperClass = new UserHelperClass(name, username,password , phoneNo, email , profession);
         reference.child(username).setValue(helperClass);
 
