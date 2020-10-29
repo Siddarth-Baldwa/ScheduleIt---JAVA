@@ -2,14 +2,11 @@ package com.example.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
@@ -42,9 +39,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
             Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);
         });
+
     }//onCreate Method End
-
-
+    
     @Override
     public void onClick(View v) {
 
@@ -58,21 +55,18 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
         String password = regPassword.getEditText().getText().toString();
         String profession = regProfession.getEditText().getText().toString();
 
-        Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
-        intent.putExtra("phoneNo", phoneNo);
-        startActivity(intent);
-
-        UserHelperClass helperClass = new UserHelperClass(name, username,password , phoneNo, email , profession);
-        reference.child(username).setValue(helperClass);
-
         if(!validateName() |!validatePassword() | !validatePhoneNo() | !validateEmail() | !validateUsername() | !validateProfession())
         {
             return;
         }
 
+        UserHelperClass helperClass = new UserHelperClass(name, username,password , phoneNo, email , profession);
+        reference.child(username).setValue(helperClass);
+
+        Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
+        intent.putExtra("phoneNo", phoneNo);
+        startActivity(intent);
     }
-
-
 
     private Boolean validateName() {
         String val = regName.getEditText().getText().toString();

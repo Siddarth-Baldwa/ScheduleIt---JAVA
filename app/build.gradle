@@ -7,6 +7,15 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
+ /*   signingConfigWriterRelease{
+        release{
+            storeFile file('C:/Users/user/Documents/AndroidStudioRegisterOOP/Register_Key/Key.jks')
+            storePassword "qwerty123@"
+            keyAlias "key0"
+            keyPassword "qwerty123@"
+        }
+
+    } */
     defaultConfig {
         applicationId "com.example.register"
         minSdkVersion 16
@@ -37,7 +46,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'com.google.firebase:firebase-database:19.2.1'
     implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.chaos.view:pinview:1.4.3'
 }

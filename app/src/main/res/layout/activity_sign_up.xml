@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUp"
+    tools:context="com.example.register.SignUp"
     android:orientation="vertical"
     android:background="#FFC107"
     android:padding="20dp">
@@ -67,6 +67,15 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/antic"
+            android:textColor="@color/black"
+            android:text="Username should have minimum 4 characters and no spaces allowed "
+            android:transitionName="logo_slog"
+            android:textSize="8sp" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,20 +122,30 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/antic"
+            android:textColor="@color/black"
+            android:text="Use atleast one special character in password"
+            android:transitionName="logo_slog"
+            android:textSize="8sp" />
+
+
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profession"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Profession"
-            android:transitionName="tran_profession"
+            android:id="@+id/profession"
+            android:transitionName="tran_profession">
 
-            >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 />
+
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
@@ -153,7 +172,7 @@
         android:layout_marginBottom="5dp"
         android:elevation="0dp"
         android:fontFamily="@font/antic"
-        android:onClick="loginUser"
+        android:onClick="onClick"
         android:text="ALREADY HAVE AN ACCOUNT? LOG IN"
         android:textColor="#000"
         android:transitionName="login_signup_tran"
