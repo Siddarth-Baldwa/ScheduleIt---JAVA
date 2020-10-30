@@ -10,6 +10,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.*;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -140,7 +141,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user!=null) {
-                                Intent intent = new Intent(getApplicationContext(), UserProfile.class);
+                                Intent intent = new Intent(getApplicationContext(), PhotoCapture.class);
                                 startActivity(intent);
                             }
                         } else {
@@ -179,6 +180,11 @@ public class Login extends AppCompatActivity {
         if (!validateUsername() | !validatePassword()) {
             return;
         } else {
+            final ProgressBar p = findViewById(R.id.progressbar);
+
+            p.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             isUser();
         }
     }
@@ -196,6 +202,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+
+
                     username.setError(null);
                     username.setErrorEnabled(false);
                     Log.i("MY PASSWORD","before calling db");
@@ -212,7 +220,8 @@ public class Login extends AppCompatActivity {
                         String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneno").getValue(String.class);
                         String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
                         String professionFromDB = dataSnapshot.child(userEnteredUsername).child("profession").getValue(String.class);*/
-                        Intent intent = new Intent(getApplicationContext(), UserProfile.class);
+                        Intent intent = new Intent(getApplicationContext(), PhotoCapture.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         /*.putExtra("name", nameFromDB);
                         intent.putExtra("username", usernameFromDB);
                         intent.putExtra("email", emailFromDB);
