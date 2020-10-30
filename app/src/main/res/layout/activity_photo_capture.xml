@@ -28,22 +28,12 @@
             android:orientation="vertical"
             android:padding="50dp">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+
                 android:id="@+id/description"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
-                android:hint="Description of Photo"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Description of document" />
 
             <Button
                 android:id="@+id/camera"

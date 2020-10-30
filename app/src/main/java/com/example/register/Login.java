@@ -141,7 +141,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user!=null) {
-                                Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                                Intent intent = new Intent(getApplicationContext(), PhotoCapture.class);
                                 startActivity(intent);
                             }
                         } else {
@@ -219,7 +219,7 @@ public class Login extends AppCompatActivity {
                         String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneno").getValue(String.class);
                         String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
                         String professionFromDB = dataSnapshot.child(userEnteredUsername).child("profession").getValue(String.class);*/
-                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                        Intent intent = new Intent(getApplicationContext(), PhotoCapture.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         /*.putExtra("name", nameFromDB);
                         intent.putExtra("username", usernameFromDB);

@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -39,6 +40,8 @@ import androidx.core.content.res.ResourcesCompat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -55,9 +58,10 @@ public class PhotoCapture extends AppCompatActivity {
     private Bitmap image;
     private Uri image1;
 
-    TextInputLayout description;
-
+    EditText description;
+    String Database_Path = "All_Image_Uploads_Database";
     private StorageReference mStorageRef;
+    private DatabaseReference databaseReference;
 
     /* protected void onRestart() {
          super.onRestart();
@@ -78,6 +82,8 @@ public class PhotoCapture extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_capture);
         mStorageRef = FirebaseStorage.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
+
 
         camera = findViewById(R.id.camera);
         upload = findViewById(R.id.upload);
@@ -151,7 +157,14 @@ public class PhotoCapture extends AppCompatActivity {
                         taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(uri-> {
                                 Uri downloadUri = uri;
                         });
+                        String TempImageName = description.getText().toString().trim();
                         Toast.makeText(PhotoCapture.this, "Photo Uploaded", Toast.LENGTH_SHORT).show();
+                        ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName,taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                        // Getting image upload ID.
+                        String ImageUploadId = databaseReference.push().getKey();
+
+                        // Adding image upload id s child element into databaseReference.
+                        databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
                 })
                 .addOnFailureListener(e->{
                         p.setVisibility(View.GONE);
