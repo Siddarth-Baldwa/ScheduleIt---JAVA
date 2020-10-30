@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Register">
         <activity android:name=".PhotoCapture" />
+        <activity android:name=".Dashboard" />
         <activity android:name=".VerifyPhoneNo" />
         <activity
             android:name=".UserProfile"
