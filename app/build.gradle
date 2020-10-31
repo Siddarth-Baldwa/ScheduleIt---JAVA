@@ -36,6 +36,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    packagingOptions{
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 dependencies {
@@ -51,4 +57,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.chaos.view:pinview:1.4.3'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -12,12 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Register">
+        <activity android:name=".Settings1" />
+        <activity android:name=".DashboardNew" />
+        <activity android:name=".ImpDocuments" />
+        <activity android:name=".ToDo" />
         <activity android:name=".PhotoCapture" />
-        <activity android:name=".Dashboard" />
         <activity android:name=".VerifyPhoneNo" />
-        <activity
-            android:name=".UserProfile"
-            android:label="@string/app_name" />
         <activity
             android:name=".SignUp"
             android:label="@string/app_name" />

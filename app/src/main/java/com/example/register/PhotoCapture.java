@@ -36,6 +36,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -57,10 +58,11 @@ public class PhotoCapture extends AppCompatActivity {
     private Button gallery;
     private Bitmap image;
     private Uri image1;
-
+    private Button DisplayImageButton;
     EditText description;
+
     String Database_Path = "All_Image_Uploads_Database";
-    private StorageReference mStorageRef;
+    private StorageReference storageReference;
     private DatabaseReference databaseReference;
 
     /* protected void onRestart() {
@@ -81,7 +83,7 @@ public class PhotoCapture extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_capture);
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://register-14b86.appspot.com/image");
         databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
 
 
@@ -89,7 +91,6 @@ public class PhotoCapture extends AppCompatActivity {
         upload = findViewById(R.id.upload);
         gallery = findViewById(R.id.gallery);
         description = findViewById(R.id.description);
-
 
         camera.setOnClickListener(view -> {
             Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -104,8 +105,8 @@ public class PhotoCapture extends AppCompatActivity {
         upload.setOnClickListener(view -> {
             upload();
         });
-    }
 
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -131,11 +132,8 @@ public class PhotoCapture extends AppCompatActivity {
             if (null == photo) {
                 Log.e("Error", "Ouh! there is no child view with R.id.imageView ID within my parent view View.");
             }
-
         }
-
     }
-
     private void upload() {
         final ProgressBar p = findViewById(R.id.progressbar);
 
@@ -147,7 +145,7 @@ public class PhotoCapture extends AppCompatActivity {
         image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
         final String random = UUID.randomUUID().toString();
-        StorageReference imageRef = mStorageRef.child("image/" + random);
+        StorageReference imageRef = storageReference;
 
         byte[] b = stream.toByteArray();
         imageRef.putBytes(b)
@@ -155,16 +153,15 @@ public class PhotoCapture extends AppCompatActivity {
                         p.setVisibility(View.GONE);
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(uri-> {
-                                Uri downloadUri = uri;
-                        });
+                            Uri downloadUrl = uri;
                         String TempImageName = description.getText().toString().trim();
                         Toast.makeText(PhotoCapture.this, "Photo Uploaded", Toast.LENGTH_SHORT).show();
-                        ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName,taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                        ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName,downloadUrl.toString());
                         // Getting image upload ID.
                         String ImageUploadId = databaseReference.push().getKey();
-
                         // Adding image upload id s child element into databaseReference.
                         databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
+                        });
                 })
                 .addOnFailureListener(e->{
                         p.setVisibility(View.GONE);

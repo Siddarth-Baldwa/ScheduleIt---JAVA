@@ -6,9 +6,7 @@ package com.example.register;
 
         public String imageURL;
 
-        public ImageUploadInfo() {
 
-        }
 
         public ImageUploadInfo(String name, String url) {
 
@@ -17,11 +15,20 @@ package com.example.register;
         }
 
         public String getImageName() {
+
             return imageName;
         }
-
         public String getImageURL() {
+
             return imageURL;
         }
 
+
+        public ImageUploadInfo(){
+
+        }
     }
+
+
+
+

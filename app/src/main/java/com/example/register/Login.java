@@ -48,7 +48,7 @@ public class Login extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null){
-            Intent intent = new Intent(getApplicationContext(),UserProfile.class);
+            Intent intent = new Intent(getApplicationContext(),DashboardNew.class);
             startActivity(intent);
         }
 
@@ -141,7 +141,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user!=null) {
-                                Intent intent = new Intent(getApplicationContext(), PhotoCapture.class);
+                                Intent intent = new Intent(getApplicationContext(), DashboardNew.class);
                                 startActivity(intent);
                             }
                         } else {
@@ -180,7 +180,11 @@ public class Login extends AppCompatActivity {
         if (!validateUsername() | !validatePassword()) {
             return;
         } else {
+
             isUser();
+            final ProgressBar p = findViewById(R.id.progressbar);
+            p.setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -197,11 +201,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    final ProgressBar p = findViewById(R.id.progressbar);
-
-                    p.setVisibility(View.VISIBLE);
-                    getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
                     username.setError(null);
                     username.setErrorEnabled(false);
@@ -219,7 +218,7 @@ public class Login extends AppCompatActivity {
                         String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneno").getValue(String.class);
                         String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
                         String professionFromDB = dataSnapshot.child(userEnteredUsername).child("profession").getValue(String.class);*/
-                        Intent intent = new Intent(getApplicationContext(), PhotoCapture.class);
+                        Intent intent = new Intent(getApplicationContext(), DashboardNew.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         /*.putExtra("name", nameFromDB);
                         intent.putExtra("username", usernameFromDB);
