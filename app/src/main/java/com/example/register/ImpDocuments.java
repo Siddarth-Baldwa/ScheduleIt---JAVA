@@ -1,32 +1,23 @@
 package com.example.register;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-import android.view.View;
-
-import android.widget.Button;
-import android.widget.ImageView;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +30,7 @@ public class ImpDocuments extends AppCompatActivity implements View.OnClickListe
     List<ImageUploadInfo> list = new ArrayList<>();
 
     private Button NewPhoto;
-
+    private String onlineUserID;
 
 
     @Override
@@ -51,7 +42,13 @@ public class ImpDocuments extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(new LinearLayoutManager(ImpDocuments.this));
         adapter = new RecyclerViewAdapter(getApplicationContext(), list);
         recyclerView.setAdapter(adapter);
-        databaseReference = FirebaseDatabase.getInstance().getReference("All_Image_Uploads_Database");
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+      /*  FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) { */
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        onlineUserID = mUser.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);
 
         NewPhoto = findViewById(R.id.uploadnewphoto);
         databaseReference.addValueEventListener(new ValueEventListener() {

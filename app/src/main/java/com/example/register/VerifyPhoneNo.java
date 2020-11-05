@@ -122,12 +122,10 @@ public class VerifyPhoneNo extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             Toast.makeText(VerifyPhoneNo.this, "Your Account has been created successfully!", Toast.LENGTH_SHORT).show();
-
                             //Perform Your required action here to either let the user sign In or do something required
                             Intent intent = new Intent(getApplicationContext(), Login.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-
                         } else {
                             Toast.makeText(VerifyPhoneNo.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }

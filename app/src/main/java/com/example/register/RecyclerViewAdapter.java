@@ -6,20 +6,18 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
@@ -63,7 +61,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 Drawable drawable=holder.imageView.getDrawable();
-                Bitmap bitmap=((BitmapDrawable)drawable).getBitmap();;
+                Bitmap bitmap=((BitmapDrawable)drawable).getBitmap();
                 Log.i("SHAREIMAGE","CACHE ENABLED");
                 /*content.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));*/
                 try {
@@ -81,7 +79,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.setType("image/jpg");
                     //context.startActivity(Intent.createChooser(intent, "Share image via"));
                     context.startActivity(intent);
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -114,14 +111,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return MainImageUploadInfoList.size();
     }
 
-
     class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView imageNameTextView;
         public Button btnshare;
         public ViewHolder(View itemView) {
             super(itemView);
-
             imageView = itemView.findViewById(R.id.imageViewNew);
             btnshare = itemView.findViewById(R.id.share);
             imageNameTextView = itemView.findViewById(R.id.ImageNameTextView);

@@ -15,11 +15,7 @@ public class PhotoCapture extends AppCompatActivity {
 */
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -32,20 +28,16 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
+import androidx.databinding.Bindable;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -64,7 +56,8 @@ public class PhotoCapture extends AppCompatActivity {
     String Database_Path = "All_Image_Uploads_Database";
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
-
+    private String onlineUserID;
+    private Bindable mBinding;
     /* protected void onRestart() {
          super.onRestart();
          setContentView(R.layout.activity_photo_capture);
@@ -84,8 +77,17 @@ public class PhotoCapture extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_capture);
         storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://register-14b86.appspot.com/image");
-        databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
-
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+      /*  FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) { */
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        onlineUserID = mUser.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);
+          /*  mAuth = FirebaseAuth.getInstance();
+            mUser = mAuth.getCurrentUser();
+            onlineUserID = mUser.getUid();
+            databaseReference = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID); */
 
         camera = findViewById(R.id.camera);
         upload = findViewById(R.id.upload);
@@ -145,7 +147,7 @@ public class PhotoCapture extends AppCompatActivity {
         image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
         final String random = UUID.randomUUID().toString();
-        StorageReference imageRef = storageReference;
+        StorageReference imageRef = storageReference.child(random);
 
         byte[] b = stream.toByteArray();
         imageRef.putBytes(b)
