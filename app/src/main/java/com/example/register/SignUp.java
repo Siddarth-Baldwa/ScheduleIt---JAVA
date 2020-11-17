@@ -73,10 +73,18 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
-                            intent.putExtra("phoneNo", phoneNo);
-                            startActivity(intent);
+                            mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
+                                        intent.putExtra("phoneNo", phoneNo);
+                                        startActivity(intent);
+                                    }
+                                }
+                            });
 
                         } else {
 

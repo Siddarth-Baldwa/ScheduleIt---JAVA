@@ -1,14 +1,14 @@
 package com.example.register;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DashboardNew extends AppCompatActivity implements View.OnClickListener {
@@ -53,7 +53,9 @@ public class DashboardNew extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.logout1 :
+                AccessToken.setCurrentAccessToken(null);
                 FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
                 i = new Intent(this, Login.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
