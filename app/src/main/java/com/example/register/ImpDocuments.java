@@ -43,9 +43,6 @@ public class ImpDocuments extends AppCompatActivity implements View.OnClickListe
         adapter = new RecyclerViewAdapter(getApplicationContext(), list);
         recyclerView.setAdapter(adapter);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-      /*  FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) { */
         FirebaseUser mUser = mAuth.getCurrentUser();
         onlineUserID = mUser.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);

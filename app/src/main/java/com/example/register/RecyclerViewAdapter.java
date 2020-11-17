@@ -20,6 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -104,6 +108,36 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 context.startActivity(Intent.createChooser(share, "Share via")); */
             }
         });
+
+        holder.btndelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser mUser = mAuth.getCurrentUser();
+                String onlineUserID = mUser.getUid();
+                DatabaseReference DR = FirebaseDatabase.getInstance().getReference();
+                DR.child("users").child(onlineUserID); *
+
+                 */
+                Log.i("Delete" ," CHecking Value "+ UploadInfo.getImageURL());
+                Log.i("Delete" ," CHecking Value "+ UploadInfo.getImageName());
+                Log.i("Delete" ," CHecking Value "+ UploadInfo.getImageKey());
+                Log.i("Delete","Entered Delete");
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser mUser = mAuth.getCurrentUser();
+                String onlineUserID = mUser.getUid();
+                String id = UploadInfo.getImageKey();
+                Log.i("Delete" ," CHecking Value "+ id);
+                DatabaseReference DR = FirebaseDatabase.getInstance().getReference().child("users").child(onlineUserID).child(id);
+                DR.removeValue();
+
+                int newPosition = holder.getAdapterPosition();
+                MainImageUploadInfoList.remove(newPosition);
+                notifyItemRemoved(newPosition);
+                notifyItemRangeChanged(newPosition, MainImageUploadInfoList.size());
+            }
+
+        });
     }
 
     @Override
@@ -114,12 +148,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView imageNameTextView;
-        public Button btnshare;
+        public Button btnshare,btndelete;
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewNew);
             btnshare = itemView.findViewById(R.id.share);
             imageNameTextView = itemView.findViewById(R.id.ImageNameTextView);
+            btndelete = itemView.findViewById(R.id.delete);
         }
     }
 }

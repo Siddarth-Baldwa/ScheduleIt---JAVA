@@ -158,9 +158,9 @@ public class PhotoCapture extends AppCompatActivity {
                             Uri downloadUrl = uri;
                         String TempImageName = description.getText().toString().trim();
                         Toast.makeText(PhotoCapture.this, "Photo Uploaded", Toast.LENGTH_SHORT).show();
-                        ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName,downloadUrl.toString());
-                        // Getting image upload ID.
                         String ImageUploadId = databaseReference.push().getKey();
+                        ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName,downloadUrl.toString(),ImageUploadId);
+                        // Getting image upload ID.
                         // Adding image upload id s child element into databaseReference.
                         databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
                         });
