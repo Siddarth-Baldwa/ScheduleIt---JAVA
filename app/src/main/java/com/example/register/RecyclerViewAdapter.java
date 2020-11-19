@@ -75,9 +75,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     fOut.flush();
                     fOut.close();
                     file.setReadable(true, false);
+                    String name = UploadInfo.getImageName();
                     final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     Uri photoURI = FileProvider.getUriForFile(context.getApplicationContext(), BuildConfig.APPLICATION_ID +".provider", file);
+                    intent.putExtra(Intent.EXTRA_TEXT, name);
                     intent.putExtra(Intent.EXTRA_STREAM, photoURI);
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     intent.setType("image/jpg");
