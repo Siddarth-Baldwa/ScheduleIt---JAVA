@@ -20,6 +20,10 @@
         <activity android:name=".ToDo" />
         <activity android:name=".PhotoCapture" />
         <activity android:name=".VerifyPhoneNo" />
+        <activity android:name=".ProductDetails" />
+        <activity android:name=".AllCategory" />
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".HomeActivity" />
         <activity
             android:name=".SignUp"
             android:label="@string/app_name" />
@@ -56,6 +60,5 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
     </application>
 </manifest>
