@@ -17,6 +17,7 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
@@ -55,15 +56,15 @@ public class VerifyPhoneNo extends AppCompatActivity {
         });
     }
 
-    private void sendVerificationCodeToUser(String phoneNo) {
+/*    private void sendVerificationCodeToUser(String phoneNo) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+91" + phoneNo,        // Phone number to verify
                 60,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
-                /*TaskExecutors.MAIN_THREAD, */this,  // Activity (for callback binding)
+                (Activity) TaskExecutors.MAIN_THREAD, // Activity (for callback binding)
                 mCallbacks);        // OnVerificationStateChangedCallbacks
-    }
-/*    private void sendVerificationCodeToUser(String phoneNo) {
+    }*/
+    private void sendVerificationCodeToUser(String phoneNo) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
@@ -73,7 +74,7 @@ public class VerifyPhoneNo extends AppCompatActivity {
                         .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
-    } */
+    }
 
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =

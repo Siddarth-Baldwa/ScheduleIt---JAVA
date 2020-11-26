@@ -1,12 +1,13 @@
 package com.example.register.model;
 
-public class DiscountedProducts {
+
+public class DailyExpensesModel {
 
 
     Integer id;
     Integer imageurl;
 
-    public DiscountedProducts(Integer id, Integer imageurl) {
+    public DailyExpensesModel(Integer id, Integer imageurl) {
         this.id = id;
         this.imageurl = imageurl;
     }
@@ -26,4 +27,5 @@ public class DiscountedProducts {
     public void setImageurl(Integer imageurl) {
         this.imageurl = imageurl;
     }
+
 }

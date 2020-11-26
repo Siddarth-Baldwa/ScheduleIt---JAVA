@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/layout_bg">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="#242F6A"
+        android:background="#BE000000"
         android:gravity="center"
         android:padding="10dp"
         android:text="Add a Task"
@@ -19,7 +20,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="9dp" />
+        tools:layout_editor_absoluteX="9dp"
+        android:fontFamily="@font/antic"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +46,8 @@
                 android:text="Task:"
                 android:textColor="#000"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/antic"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -56,10 +59,13 @@
                 android:id="@+id/task"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Task"
+                android:hint="Enter a task"
                 android:textColor="#000"
                 android:textStyle="bold"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:textColorHint="#6B000000"
+                android:fontFamily="@font/antic"/>
 
         </RelativeLayout>
         </LinearLayout>
@@ -67,7 +73,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="8dp"
         android:orientation="horizontal">
 
 
@@ -85,21 +91,21 @@
 
             <Button
                 android:id="@+id/cancelBtn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="0dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#3F51B5"
+                android:background="#000000"
+                android:fontFamily="@font/antic"
                 android:text="Cancel"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textColor="#000000"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                app:backgroundTint="#3F51B5" />
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -117,13 +123,14 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#3F51B5"
+                android:background="#000000"
                 android:text="Save"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:backgroundTint="#3F51B5" />
+                android:fontFamily="@font/antic"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
         </RelativeLayout>
 
     </LinearLayout>

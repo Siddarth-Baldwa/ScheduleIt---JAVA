@@ -52,7 +52,7 @@ public class ProductDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(ProductDetails.this, MainActivity.class);
+                Intent i = new Intent(ProductDetails.this, FinalDashboard.class);
                 startActivity(i);
                 finish();
 

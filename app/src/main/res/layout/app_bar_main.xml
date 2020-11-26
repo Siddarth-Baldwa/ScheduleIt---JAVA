@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/plus"
+        android:src="@drawable/icons8_add_96"
         app:backgroundTint="#090808" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,62 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     app:cardElevation="10dp"
     android:layout_margin="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    android:backgroundTintMode="add"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="54dp"
+            android:background="@drawable/layout_bg1">
 
             <LinearLayout
                 android:layout_width="321dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="51dp"
-                android:layout_marginLeft="51dp"
-                android:orientation="vertical"
-                />
-
-            <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/bottom_nav_dashboard_icon"
-                />
+                android:orientation="vertical" />
 
             <TextView
                 android:id="@+id/taskTv"
-                android:layout_width="256dp"
-                android:layout_height="wrap_content"
+                android:layout_width="287dp"
+                android:layout_height="34dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginStart="35dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginBottom="9dp"
                 android:layout_toStartOf="@+id/todoCheckBox"
                 android:layout_toLeftOf="@+id/todoCheckBox"
+                android:fontFamily="@font/tinos"
                 android:maxLines="1"
                 android:padding="5dp"
                 android:text="Task"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="20sp"
-                android:textStyle="bold" />
-
+                 />
             <CheckBox
                 android:id="@+id/todoCheckBox"
                 android:layout_width="wrap_content"
@@ -64,14 +59,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="-10dp"
-                android:layout_marginRight="-10dp"
-                android:buttonTint="@android:color/holo_blue_dark" />
+                android:layout_marginTop="-1dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:buttonTint="#81000000" />
 
         </RelativeLayout>
-
     </LinearLayout>
-
-
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

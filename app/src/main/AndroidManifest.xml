@@ -22,7 +22,7 @@
         <activity android:name=".VerifyPhoneNo" />
         <activity android:name=".ProductDetails" />
         <activity android:name=".AllCategory" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".FinalDashboard"/>
         <activity android:name=".HomeActivity" />
         <activity android:name=".AboutAppActivity" />
         <activity android:name=".PastTaskActivity" />
@@ -62,6 +62,10 @@
         </provider>
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"

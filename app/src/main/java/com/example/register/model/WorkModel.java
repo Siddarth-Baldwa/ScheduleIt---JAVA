@@ -1,13 +1,12 @@
 package com.example.register.model;
 
-
-public class Category {
+public class WorkModel {
 
 
     Integer id;
     Integer imageurl;
 
-    public Category(Integer id, Integer imageurl) {
+    public WorkModel(Integer id, Integer imageurl) {
         this.id = id;
         this.imageurl = imageurl;
     }
@@ -27,5 +26,4 @@ public class Category {
     public void setImageurl(Integer imageurl) {
         this.imageurl = imageurl;
     }
-
 }

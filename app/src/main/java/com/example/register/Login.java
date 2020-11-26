@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null && user.isEmailVerified()){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), FinalDashboard.class);
             startActivity(intent);
         }
     }
@@ -161,7 +161,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user!=null) {
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), FinalDashboard.class);
                                 startActivity(intent);
                             }
                         } else {
@@ -184,7 +184,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(Login.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            startActivity(new Intent(Login.this, MainActivity.class));
+                            startActivity(new Intent(Login.this, FinalDashboard.class));
                             finish();
                         }
                     }
@@ -254,7 +254,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if(mAuth.getCurrentUser().isEmailVerified()){
                                 // Sign in success, update UI with the signed-in user's information
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), FinalDashboard.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                             }

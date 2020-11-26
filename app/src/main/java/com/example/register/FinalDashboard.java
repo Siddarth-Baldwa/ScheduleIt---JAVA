@@ -9,12 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.register.adapter.CategoryAdapter;
-import com.example.register.adapter.DiscountedProductAdapter;
+import com.example.register.adapter.DailyExpensesAdapter;
 import com.example.register.adapter.RecentlyViewedAdapter;
-import com.example.register.model.Category;
-import com.example.register.model.DiscountedProducts;
+import com.example.register.adapter.WorkAdapter;
+import com.example.register.model.DailyExpensesModel;
 import com.example.register.model.RecentlyViewed;
+import com.example.register.model.WorkModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,6 @@ import static com.example.register.R.drawable.card2;
 import static com.example.register.R.drawable.card3;
 import static com.example.register.R.drawable.card4;
 import static com.example.register.R.drawable.icons8_add_96;
-import static com.example.register.R.drawable.icons8_address_book_96;
 import static com.example.register.R.drawable.icons8_buying_96;
 import static com.example.register.R.drawable.icons8_coins_96;
 import static com.example.register.R.drawable.icons8_collaboration_96;
@@ -42,14 +41,14 @@ import static com.example.register.R.drawable.icons8_kitchenwares_96;
 import static com.example.register.R.drawable.icons8_meeting_room_96;
 import static com.example.register.R.drawable.icons8_paid_96;
 
-public class MainActivity extends AppCompatActivity {
+public class FinalDashboard extends AppCompatActivity {
 
     RecyclerView discountRecyclerView, categoryRecyclerView, recentlyViewedRecycler;
-    DiscountedProductAdapter discountedProductAdapter;
-    List<DiscountedProducts> discountedProductsList;
+    WorkAdapter workAdapter;
+    List<WorkModel> workModelList;
 
-    CategoryAdapter categoryAdapter;
-    List<Category> categoryList;
+    DailyExpensesAdapter dailyExpensesAdapter;
+    List<DailyExpensesModel> dailyExpensesModelList;
 
     RecentlyViewedAdapter recentlyViewedAdapter;
     List<RecentlyViewed> recentlyViewedList;
@@ -71,30 +70,30 @@ public class MainActivity extends AppCompatActivity {
         allCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, AllCategory.class);
+                Intent i = new Intent(FinalDashboard.this, AllCategory.class);
                 startActivity(i);
             }
         });
 
         // adding data to model
-        discountedProductsList = new ArrayList<>();
-        discountedProductsList.add(new DiscountedProducts(1, icons8_collaboration_96));
-        discountedProductsList.add(new DiscountedProducts(2, icons8_contact_us_96));
-        discountedProductsList.add(new DiscountedProducts(3, icons8_feedback_96));
-        discountedProductsList.add(new DiscountedProducts(4, icons8_meeting_room_96));
-        discountedProductsList.add(new DiscountedProducts(5, icons8_inspection_96));
-        discountedProductsList.add(new DiscountedProducts(6, icons8_address_book_96));
+        workModelList = new ArrayList<>();
+        workModelList.add(new WorkModel(1, icons8_collaboration_96));
+        workModelList.add(new WorkModel(2, icons8_contact_us_96));
+        workModelList.add(new WorkModel(3, icons8_feedback_96));
+        workModelList.add(new WorkModel(4, icons8_meeting_room_96));
+        workModelList.add(new WorkModel(5, icons8_inspection_96));
+        workModelList.add(new WorkModel(6, icons8_add_96));
 
         // adding data to model
-        categoryList = new ArrayList<>();
-        categoryList.add(new Category(1, icons8_coins_96));
-        categoryList.add(new Category(2, icons8_buying_96));
-        categoryList.add(new Category(3, icons8_kitchenwares_96));
-        categoryList.add(new Category(4, icons8_discount_96));
-        categoryList.add(new Category(5, icons8_paid_96));
-        categoryList.add(new Category(6, icons8_delivery_96));
-        categoryList.add(new Category(7, icons8_image_96));
-        categoryList.add(new Category(8, icons8_add_96));
+        dailyExpensesModelList = new ArrayList<>();
+        dailyExpensesModelList.add(new DailyExpensesModel(1, icons8_coins_96));
+        dailyExpensesModelList.add(new DailyExpensesModel(2, icons8_buying_96));
+        dailyExpensesModelList.add(new DailyExpensesModel(3, icons8_kitchenwares_96));
+        dailyExpensesModelList.add(new DailyExpensesModel(4, icons8_discount_96));
+        dailyExpensesModelList.add(new DailyExpensesModel(5, icons8_paid_96));
+        dailyExpensesModelList.add(new DailyExpensesModel(6, icons8_delivery_96));
+        dailyExpensesModelList.add(new DailyExpensesModel(7, icons8_image_96));
+        dailyExpensesModelList.add(new DailyExpensesModel(8, icons8_add_96));
 
         // adding data to model
         recentlyViewedList = new ArrayList<>();
@@ -103,25 +102,25 @@ public class MainActivity extends AppCompatActivity {
         recentlyViewedList.add(new RecentlyViewed("Strawberry", "The strawberry is a highly nutritious fruit, loaded with vitamin C.", "₹ 30", "1", "KG", card2, b1));
         recentlyViewedList.add(new RecentlyViewed("Kiwi", "Full of nutrients like vitamin C, vitamin K, vitamin E, folate, and potassium.", "₹ 30", "1", "PC", card1, b2));
 
-        setDiscountedRecycler(discountedProductsList);
-        setCategoryRecycler(categoryList);
+        setDiscountedRecycler(workModelList);
+        setCategoryRecycler(dailyExpensesModelList);
         setRecentlyViewedRecycler(recentlyViewedList);
 
     }
 
-    private void setDiscountedRecycler(List<DiscountedProducts> dataList) {
+    private void setDiscountedRecycler(List<WorkModel> dataList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         discountRecyclerView.setLayoutManager(layoutManager);
-        discountedProductAdapter = new DiscountedProductAdapter(this,dataList);
-        discountRecyclerView.setAdapter(discountedProductAdapter);
+        workAdapter = new WorkAdapter(this,dataList);
+        discountRecyclerView.setAdapter(workAdapter);
     }
 
 
-    private void setCategoryRecycler(List<Category> categoryDataList) {
+    private void setCategoryRecycler(List<DailyExpensesModel> dailyExpensesModelDataList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         categoryRecyclerView.setLayoutManager(layoutManager);
-        categoryAdapter = new CategoryAdapter(this,categoryDataList);
-        categoryRecyclerView.setAdapter(categoryAdapter);
+        dailyExpensesAdapter = new DailyExpensesAdapter(this, dailyExpensesModelDataList);
+        categoryRecyclerView.setAdapter(dailyExpensesAdapter);
     }
 
     private void setRecentlyViewedRecycler(List<RecentlyViewed> recentlyViewedDataList) {

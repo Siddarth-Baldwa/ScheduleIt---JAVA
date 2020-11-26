@@ -160,7 +160,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void onFeed(View v) {
-        Intent intent = new Intent(com.example.register.SettingActivity.this, MainActivity.class);
+        Intent intent = new Intent(com.example.register.SettingActivity.this, FinalDashboard.class);
         startActivity(intent);
     }
 

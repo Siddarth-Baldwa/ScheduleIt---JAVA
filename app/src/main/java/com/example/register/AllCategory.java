@@ -4,7 +4,6 @@ package com.example.register;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -41,7 +40,7 @@ public class AllCategory extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(AllCategory.this, MainActivity.class);
+                Intent back = new Intent(AllCategory.this, FinalDashboard.class);
                 startActivity(back);
                 finish();
             }
