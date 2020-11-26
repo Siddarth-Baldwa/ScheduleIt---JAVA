@@ -32,9 +32,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:src="@drawable/icons8_add_96"
-
-            app:backgroundTint="@color/teal_700"
-            app:rippleColor="#FFFFFF" />
+            />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

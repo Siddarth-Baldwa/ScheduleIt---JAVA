@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.register.HomeActivity;
+import com.example.register.Notif_Main;
 import com.example.register.R;
 import com.example.register.model.DiscountedProducts;
 
@@ -41,8 +42,25 @@ public class DiscountedProductAdapter extends RecyclerView.Adapter<DiscountedPro
         holder.discountImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(context, HomeActivity.class);
-                context.startActivity(i);
+                Intent intent;
+                switch (position){
+                    case 0:
+                        intent=new Intent(context, HomeActivity.class);
+                        intent.putExtra("meetings","abc");
+                        context.startActivity(intent);
+                        break;
+                    case 1:
+                        intent=new Intent(context, HomeActivity.class);
+                        intent.putExtra("meetings","xyz");
+                        context.startActivity(intent);
+                        break;
+                    case 2:
+                        intent=new Intent(context, Notif_Main.class);
+                        context.startActivity(intent);
+                        break;
+
+                }
+
             }
         });
 

@@ -30,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 //import android.widget.Toolbar;
 
-
 public class HomeActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -72,8 +71,8 @@ public class HomeActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         onlineUserID = mUser.getUid();
-        reference = FirebaseDatabase.getInstance().getReference().child("tasks").child(onlineUserID);
-
+        String meeting = getIntent().getStringExtra("meetings");
+        reference = FirebaseDatabase.getInstance().getReference().child("tasks").child(onlineUserID).child(meeting);
 
         floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +110,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String mTask = task.getText().toString().trim();
                 String id = reference.push().getKey();
+
 
                 if (TextUtils.isEmpty(mTask)) {
                     task.setError("Task is Required");
@@ -207,6 +207,7 @@ public class HomeActivity extends AppCompatActivity {
         AlertDialog dialog = myDialog.create();
 
         EditText mTask = view.findViewById(R.id.mEditTextTask);
+
 
         mTask.setText(task);
         mTask.setSelection(task.length());
