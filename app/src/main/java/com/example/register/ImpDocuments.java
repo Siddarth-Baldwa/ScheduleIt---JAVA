@@ -45,7 +45,7 @@ public class ImpDocuments extends AppCompatActivity implements View.OnClickListe
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
         onlineUserID = mUser.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Imp Documents").child(onlineUserID);
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);
 
         NewPhoto = findViewById(R.id.uploadnewphoto);
         databaseReference.addValueEventListener(new ValueEventListener() {

@@ -4,18 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D2D6EF"
+    android:background="#FFFFFF"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context=".TaskAdderActivity">
+    tools:context=".TaskAdderActivity"
+    android:padding="8dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:background="#3F51B5">
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,16 +20,19 @@
 
         <EditText
             android:id="@+id/addername"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:gravity="start"
-            android:hint="Remind me to..."
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:textColor="#141172"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_height="50dp"
+            android:background="@drawable/border_bg"
+            android:hint="Remind me to ..."
+            android:outlineSpotShadowColor="@color/black"
+            android:paddingLeft="5dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="18dp"
+            android:fontFamily="@font/antic"
+            app:boxStrokeColor="@color/black"
+            app:counterTextColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -54,26 +51,30 @@
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="callcontacts"
-            android:src="@drawable/call" />
+            android:src="@drawable/icons8_contacts_48"
+            android:background="@drawable/layout_bg1"/>
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:onClick="sendmsg"
-            android:src="@drawable/msg" />
+            android:src="@drawable/icons8_circled_envelope_48"
+
+            android:background="@drawable/layout_bg1"/>
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:onClick="setmic"
-            android:src="@drawable/mic" />
+            android:src="@drawable/icons8_microphone_48"
+            android:background="@drawable/layout_bg1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -85,22 +86,30 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:paddingLeft="15dp"
-            android:text="Details"
             android:textSize="20dp"
-            android:textStyle="bold">
+            android:fontFamily="@font/antic"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            >
 
         </TextView>
 
         <EditText
             android:id="@+id/adderdes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Add details about task..."
-            android:paddingLeft="15dp">
-
-        </EditText>
+            android:layout_height="50dp"
+            android:hint="Details about task"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:textColorHint="@color/black"
+            android:outlineSpotShadowColor="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:counterTextColor="@color/black"
+            android:background="@drawable/border_bg"
+            android:paddingLeft="5dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/antic"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -113,8 +122,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingLeft="15dp"
-            android:src="@drawable/date"></ImageView>
+            android:paddingLeft="13dp"
+            android:src="@drawable/icons8_planner_48" />
 
         <TextView
             android:id="@+id/adderdatetv"
@@ -123,10 +132,12 @@
             android:layout_weight="7"
             android:gravity="center"
             android:onClick="setdate"
-            android:paddingRight="15dp"
+            android:paddingRight="13dp"
             android:text="---"
+            android:textColor="@color/black"
             android:textSize="22dp"
-            android:textStyle="bold"></TextView>
+            android:fontFamily="@font/antic"
+            />
 
     </LinearLayout>
 
@@ -137,11 +148,12 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="0dp"
+            android:layout_width="3dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingLeft="15dp"
-            android:src="@drawable/time"></ImageView>
+            android:paddingLeft="12dp"
+            android:paddingRight="3dp"
+            android:src="@drawable/icons8_alarm_clock_96" />
 
         <TextView
             android:id="@+id/addertimetv"
@@ -153,7 +165,8 @@
             android:paddingRight="15dp"
             android:text="---"
             android:textSize="22dp"
-            android:textStyle="bold"></TextView>
+            android:textColor="@color/black"
+            android:fontFamily="@font/antic"/>
 
     </LinearLayout>
 
@@ -168,7 +181,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:paddingLeft="15dp"
-            android:src="@drawable/repeat"></ImageView>
+            android:src="@drawable/icons8_synchronize_48" />
 
         <TextView
             android:id="@+id/adderrepeat"
@@ -177,10 +190,11 @@
             android:layout_weight="7"
             android:gravity="center"
             android:onClick="setrepeat"
-            android:paddingRight="15dp"
+            android:paddingRight="13dp"
             android:text="None"
             android:textSize="22dp"
-            android:textStyle="bold">
+            android:textColor="@color/black"
+            android:fontFamily="@font/antic">
 
         </TextView>
 
@@ -197,7 +211,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:paddingLeft="10dp"
-            android:src="@drawable/marker"></ImageView>
+            android:src="@drawable/icons8_paint_palette_48"
+            />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -208,23 +223,24 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/addermarker"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="0dp"
                 android:layout_weight="1"
                 android:onClick="setcolor"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:src="@drawable/mblack"></ImageView>
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:src="@drawable/mblack" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>
 
@@ -236,10 +252,11 @@
 
         <Button
             android:id="@+id/adderset"
-            android:layout_width="180dp"
-            android:layout_height="60dp"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
             android:background="@drawable/adderbutton"
             android:text="Set"
+            android:fontFamily="@font/antic"
             android:textColor="#000000"
             android:textSize="22sp" />
     </LinearLayout>

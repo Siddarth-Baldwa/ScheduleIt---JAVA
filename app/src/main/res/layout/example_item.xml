@@ -4,13 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:cardCornerRadius="15dp">
+    app:cardCornerRadius="15dp"
+    app:cardBackgroundColor="@color/lightWhite"
+    android:backgroundTintMode="add"
+    android:backgroundTint="@color/white"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/layout_bg1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,7 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/title" />
+                android:src="@drawable/icons8_data_quality_48" />
 
             <TextView
                 android:id="@+id/reltitle"
@@ -31,7 +36,9 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="8dp"
                 android:text="Title"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/antic"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
 
@@ -53,7 +60,9 @@
                 android:layout_weight="5"
                 android:gravity="center_vertical"
                 android:paddingLeft="8dp"
-                android:text="Time">
+                android:text="Time"
+                android:fontFamily="@font/antic"
+                android:textColor="@color/black">
 
             </TextView>
 
@@ -67,12 +76,14 @@
 
             <TextView
                 android:id="@+id/reldate"
-                android:layout_width="0dp"
+                android:layout_width="16dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
+                android:fontFamily="@font/antic"
                 android:gravity="center_vertical"
                 android:paddingLeft="8dp"
-                android:text="Date"></TextView>
+                android:text="Date"
+                android:textColor="@color/black" />
 
             <ImageView
                 android:layout_width="0dp"
@@ -89,7 +100,9 @@
                 android:layout_weight="5"
                 android:gravity="center_vertical"
                 android:paddingLeft="8dp"
-                android:text="None"></TextView>
+                android:text="None"
+                android:fontFamily="@font/antic"
+                android:textColor="@color/black"/>
 
             <ImageView
                 android:id="@+id/relmarker"
