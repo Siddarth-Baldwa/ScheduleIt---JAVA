@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +38,7 @@ public class DailyExpensesAdapter extends RecyclerView.Adapter<DailyExpensesAdap
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-
+        holder.expenses_name.setText(dailyExpensesModelList.get(position).getExpenses_name());
         holder.categoryImage.setImageResource(dailyExpensesModelList.get(position).getImageurl());
         holder.categoryImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,11 +63,13 @@ public class DailyExpensesAdapter extends RecyclerView.Adapter<DailyExpensesAdap
     public  static class CategoryViewHolder extends RecyclerView.ViewHolder{
 
         ImageView categoryImage;
+        TextView expenses_name;
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            categoryImage = itemView.findViewById(R.id.categoryImage);
+            categoryImage = itemView.findViewById(R.id.expenses_image);
+            expenses_name = itemView.findViewById(R.id.expenses_text);
 
         }
     }

@@ -33,7 +33,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -74,7 +73,7 @@ public class Notif_Main extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notif_activity_main);
-        setTitle("MY DAY");
+        setTitle("Register");
         settvcolor();
         mexamplelist = new ArrayList<>();
         mreminderlist = new ArrayList<>();
@@ -322,7 +321,7 @@ public class Notif_Main extends AppCompatActivity
     private void showNotification1() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, Channel_ID);
         builder.setSmallIcon(R.drawable.icons8_today_96);
-        builder.setContentTitle("My Day");
+        builder.setContentTitle("Register");
         builder.setContentText("You have task now.Click to open app.");
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 

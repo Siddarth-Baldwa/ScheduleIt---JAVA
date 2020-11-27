@@ -3,30 +3,29 @@ package com.example.register.model;
 public class RecentlyViewed {
 
     String name;
-    String description;
+/*    String description;
     String price;
     String quantity;
-    String unit;
-    int imageUrl;
-    int bigimageurl;
+    String unit;*/
+    Integer imageUrl;
+    Integer id;
 
-    public RecentlyViewed(String name, String description, String price, String quantity, String unit, int
-            imageUrl, int bigimageurl) {
+    public RecentlyViewed(String name, int imageUrl, int id) {
         this.name = name;
-        this.description = description;
+  /*      this.description = description;
         this.price = price;
         this.quantity = quantity;
-        this.unit = unit;
+        this.unit = unit;*/
         this.imageUrl = imageUrl;
-        this.bigimageurl = bigimageurl;
+        this.id = id;
     }
 
-    public int getBigimageurl() {
-        return bigimageurl;
+    public Integer getId() {
+        return id;
     }
 
-    public void setBigimageurl(int bigimageurl) {
-        this.bigimageurl = bigimageurl;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -37,7 +36,7 @@ public class RecentlyViewed {
         this.name = name;
     }
 
-    public String getDescription() {
+   /* public String getDescription() {
         return description;
     }
 
@@ -68,12 +67,12 @@ public class RecentlyViewed {
     public void setUnit(String unit) {
         this.unit = unit;
     }
-
-    public int getImageUrl() {
+*/
+    public Integer getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(int imageUrl) {
+    public void setImageurl(Integer Imageurl) {
         this.imageUrl = imageUrl;
     }
 }

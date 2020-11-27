@@ -49,14 +49,16 @@
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="179dp"
                 android:layout_height="wrap_content"
-                android:text="Share" />
+                android:text="Share"
+                android:textColor="@color/black"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/delete"
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="144dp"
                 android:layout_height="wrap_content"
-                android:text="Delete" />
+                android:text="Delete"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
     </RelativeLayout>

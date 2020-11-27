@@ -77,7 +77,8 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -86,12 +87,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/antic"
-        android:text="Daily Expenses"
+        android:text="Home"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/discountedRecycler"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecycler"
@@ -127,13 +129,13 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/categoryRecycler"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recently_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
