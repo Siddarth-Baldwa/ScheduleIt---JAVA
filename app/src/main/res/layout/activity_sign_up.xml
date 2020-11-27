@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.register.SignUp"
     android:orientation="vertical"
-    android:background="@drawable/annie_spratt_7cme6wlgrdk"
+    android:background="@drawable/sai_abhinivesh_burla_wev76kgeysk_01__1_"
     android:padding="20dp">
 
     <TextView
