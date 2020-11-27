@@ -1,11 +1,12 @@
 package com.example.register;
 
 public class Model {
-    private String task, id;
+    private String task, id ;
 
     public Model(){}
 
-    public Model(String task, String id) {
+    public Model(String task, String id ) {
+
         this.task = task;
         this.id = id;
     }

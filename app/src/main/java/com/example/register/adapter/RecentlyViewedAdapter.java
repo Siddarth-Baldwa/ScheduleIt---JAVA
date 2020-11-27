@@ -61,7 +61,7 @@ public class RecentlyViewedAdapter extends RecyclerView.Adapter<RecentlyViewedAd
                         break;
                     case 1:
                         intent=new Intent(context, ImpDocuments.class);
-                        intent.putExtra("meetings","Other_ImpDocuments");
+                        intent.putExtra("photo","Other_ImpDocuments");
                         context.startActivity(intent);
                         break;
                     case 2:

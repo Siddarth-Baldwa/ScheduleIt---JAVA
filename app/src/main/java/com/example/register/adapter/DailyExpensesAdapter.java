@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.register.HomeActivity;
+import com.example.register.ImpDocuments;
 import com.example.register.Notif_Main;
 import com.example.register.R;
 import com.example.register.model.DailyExpensesModel;
@@ -46,8 +48,32 @@ public class DailyExpensesAdapter extends RecyclerView.Adapter<DailyExpensesAdap
                 Intent intent;
                 switch (position){
                     case 0:
+                        intent=new Intent(context, HomeActivity.class);
+                        intent.putExtra("meetings","Daily Expenses");
+                        context.startActivity(intent);
+                        break;
+
+                    case 1:
+                        intent=new Intent(context,HomeActivity.class);
+                        intent.putExtra("meetings","Purchases");
+                        context.startActivity(intent);
+                        break;
+
+                    case 2:
+                        intent=new Intent(context, ImpDocuments.class);
+                        intent.putExtra("photo","Maintenance");
+                        context.startActivity(intent);
+                        break;
+
+                    case 3:
                         intent=new Intent(context, Notif_Main.class);
-                        intent.putExtra("work","Daily Expenses");
+                        intent.putExtra("work","Payments Due");
+                        context.startActivity(intent);
+                        break;
+
+                    case 4:
+                        intent=new Intent(context, Notif_Main.class);
+                        intent.putExtra("work","Others2");
                         context.startActivity(intent);
                         break;
                 }

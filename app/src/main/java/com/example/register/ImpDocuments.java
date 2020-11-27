@@ -32,7 +32,7 @@ public class ImpDocuments extends AppCompatActivity implements View.OnClickListe
 
     private Button NewPhoto;
     private String onlineUserID;
-
+    String photovalue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +44,11 @@ public class ImpDocuments extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(new LinearLayoutManager(ImpDocuments.this));
         adapter = new RecyclerViewAdapter(getApplicationContext(), list);
         recyclerView.setAdapter(adapter);
+        photovalue = getIntent().getStringExtra("photo");
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
         onlineUserID = mUser.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Photo").child(onlineUserID).child(photovalue);
 
         NewPhoto = findViewById(R.id.uploadnewphoto);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -93,6 +94,7 @@ public class ImpDocuments extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PhotoCapture.class);
+                intent.putExtra("photo",photovalue);
                 startActivity(intent);
             }
         }

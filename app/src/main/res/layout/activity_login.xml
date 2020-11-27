@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.register.Login"
     android:orientation="vertical"
-    android:background="@drawable/jay_mantri_tfyi0qox08c"
+    android:background="@drawable/annie_spratt_s1n_aviviqa"
     android:padding="20dp">
 
     <TextView

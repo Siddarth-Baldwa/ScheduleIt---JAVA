@@ -81,7 +81,6 @@ public class Login extends AppCompatActivity {
             Intent intent = new Intent(Login.this, SignUp.class);
             startActivity(intent);
          /* Pair[] pairs = new Pair[7];
-
             pairs[0] = new Pair<View, String>(logotext, "logo_name");
             pairs[1] = new Pair<View, String>(slogantext, "logo_slog");
             pairs[2] = new Pair<View, String>(email, "logo_username");
@@ -89,7 +88,6 @@ public class Login extends AppCompatActivity {
             pairs[4] = new Pair<View, String>(login_btn, "button_tran");
             pairs[5] = new Pair<View, String>(callSignUp, "login_signup_tran");
             pairs[6] = new Pair<View, String>(callSignUp, "google_tran");
-
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Login.this, pairs);
                 startActivity(intent, options.toBundle());

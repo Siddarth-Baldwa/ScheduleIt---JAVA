@@ -1,7 +1,10 @@
 package com.example.register;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +17,9 @@ import com.example.register.adapter.WorkAdapter;
 import com.example.register.model.DailyExpensesModel;
 import com.example.register.model.RecentlyViewed;
 import com.example.register.model.WorkModel;
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +51,7 @@ public class FinalDashboard extends AppCompatActivity {
     List<RecentlyViewed> recentlyViewedList;
 
     TextView allCategory;
-
-
+    ImageView logout ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +67,19 @@ public class FinalDashboard extends AppCompatActivity {
         categoryRecyclerView = findViewById(R.id.categoryRecycler);
         /*allCategory = findViewById(R.id.allCategoryImage);*/
         recentlyViewedRecycler = findViewById(R.id.recently_item);
+        logout = findViewById(R.id.exit);
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AccessToken.setCurrentAccessToken(null);
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+                Intent i = new Intent(FinalDashboard.this,Login.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+            }
+        });
 
         /*allCategory.setOnClickListener(new View.OnClickListener() {
             @Override

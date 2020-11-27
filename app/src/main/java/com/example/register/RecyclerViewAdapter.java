@@ -43,6 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_items, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
+
     }
 
     @Override
@@ -129,8 +130,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 FirebaseUser mUser = mAuth.getCurrentUser();
                 String onlineUserID = mUser.getUid();
                 String id = UploadInfo.getImageKey();
+                String photovalue= UploadInfo.getPhotovalue();
                 Log.i("Delete" ," CHecking Value "+ id);
-                DatabaseReference DR = FirebaseDatabase.getInstance().getReference().child("users").child(onlineUserID).child(id);
+                DatabaseReference DR = FirebaseDatabase.getInstance().getReference().child("Photo").child(onlineUserID).child(photovalue).child(id);
                 DR.removeValue();
 
                 int newPosition = holder.getAdapterPosition();

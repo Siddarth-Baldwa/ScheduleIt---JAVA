@@ -52,7 +52,7 @@ public class PhotoCapture extends AppCompatActivity {
     private Uri image1;
     private Button DisplayImageButton;
     EditText description;
-
+    String photovalue;
     String Database_Path = "All_Image_Uploads_Database";
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
@@ -77,6 +77,7 @@ public class PhotoCapture extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_photo_capture);
+        photovalue = getIntent().getStringExtra("photo");
         storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://register-14b86.appspot.com/image");
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
       /*  FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
@@ -84,7 +85,7 @@ public class PhotoCapture extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) { */
         FirebaseUser mUser = mAuth.getCurrentUser();
         onlineUserID = mUser.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Photo").child(onlineUserID).child(photovalue);
           /*  mAuth = FirebaseAuth.getInstance();
             mUser = mAuth.getCurrentUser();
             onlineUserID = mUser.getUid();
@@ -160,7 +161,8 @@ public class PhotoCapture extends AppCompatActivity {
                         String TempImageName = description.getText().toString().trim();
                         Toast.makeText(PhotoCapture.this, "Photo Uploaded", Toast.LENGTH_SHORT).show();
                         String ImageUploadId = databaseReference.push().getKey();
-                        ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName,downloadUrl.toString(),ImageUploadId);
+                        String photovalue1 = getIntent().getStringExtra("photo");
+                        ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName,downloadUrl.toString(),ImageUploadId, photovalue1);
                         // Getting image upload ID.
                         // Adding image upload id s child element into databaseReference.
                         databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
