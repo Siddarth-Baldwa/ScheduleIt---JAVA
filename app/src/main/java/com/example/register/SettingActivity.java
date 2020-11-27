@@ -26,6 +26,7 @@ public class SettingActivity extends AppCompatActivity {
     private TextView tvVib, tvRem;
     private Switch darkSwitch, fullSwitch, notisoundSwitch, vibSwitch, notishowSwitch;
     DatabaseReference db;
+    String workvalue1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,10 @@ public class SettingActivity extends AppCompatActivity {
         notisoundSwitch = findViewById(R.id.notisoundswitch);
         vibSwitch = findViewById(R.id.vibswitch);
         notishowSwitch = findViewById(R.id.notishowswitch);
-
+        workvalue1 = getIntent().getStringExtra("work");
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings");
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child(workvalue1);
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -113,7 +114,7 @@ public class SettingActivity extends AppCompatActivity {
     private void togglevib() {
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Vibration");
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child(workvalue1).child("Vibration");
         if (vibSwitch.isChecked()) {
             db.setValue("True");
         } else {
@@ -124,7 +125,7 @@ public class SettingActivity extends AppCompatActivity {
     private void togglesound() {
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Sound");
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child(workvalue1).child("Sound");
         if (notisoundSwitch.isChecked()) {
             db.setValue("True");
         } else {
@@ -135,7 +136,7 @@ public class SettingActivity extends AppCompatActivity {
     private void togglefullscreen() {
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Fullscreen");
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child(workvalue1).child("Fullscreen");
         if (fullSwitch.isChecked()) {
             db.setValue("True");
         } else {
@@ -146,7 +147,7 @@ public class SettingActivity extends AppCompatActivity {
     private void toggleshow() {
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Notification");
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child(workvalue1).child("Notification");
         if (notishowSwitch.isChecked()) {
             db.setValue("True");
         } else {
@@ -181,13 +182,13 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = curuser.getUid();
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Vibration");
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child(workvalue1).child("Vibration");
                 db.setValue("True");
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Sound");
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child(workvalue1).child("Sound");
                 db.setValue("True");
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Fullscreen");
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child(workvalue1).child("Fullscreen");
                 db.setValue("False");
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Notification");
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child(workvalue1).child("Notification");
                 db.setValue("True");
             }
         });

@@ -31,28 +31,32 @@
 
             <TextView
                 android:id="@+id/taskTv"
-                android:layout_width="287dp"
-                android:layout_height="34dp"
+                android:layout_width="wrap_content"
+                android:layout_height="31dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="11dp"
-                android:layout_marginEnd="7dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginBottom="9dp"
-                android:layout_toStartOf="@+id/todoCheckBox"
-                android:layout_toLeftOf="@+id/todoCheckBox"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="12dp"
                 android:fontFamily="@font/tinos"
                 android:maxLines="1"
                 android:padding="5dp"
                 android:text="Task"
                 android:textColor="#000000"
-                android:textSize="20sp"
-                 />
-            <CheckBox
+                android:textSize="20sp" />
+                <!--android:layout_toStartOf="@+id/todoCheckBox"
+                android:layout_toLeftOf="@+id/todoCheckBox"-->
+
+
+
+<!--            <CheckBox
                 android:id="@+id/todoCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
@@ -62,7 +66,8 @@
                 android:layout_marginTop="-1dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginRight="0dp"
-                android:buttonTint="#81000000" />
+                android:buttonTint="#81000000" />-->
+
 
         </RelativeLayout>
     </LinearLayout>

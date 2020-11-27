@@ -37,8 +37,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (notificationManager != null) {
             notificationManager.createNotificationChannel(notificationChannel);
         }
-
         Intent resintent = new Intent(this, Notif_Main.class);
+        resintent.putExtra("work","Chodu");
         PendingIntent respenindent = PendingIntent.getActivity(this, 1, resintent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id);
         builder.setSmallIcon(R.drawable.icons8_image_96);

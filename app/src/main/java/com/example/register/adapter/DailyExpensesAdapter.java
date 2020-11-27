@@ -47,6 +47,7 @@ public class DailyExpensesAdapter extends RecyclerView.Adapter<DailyExpensesAdap
                 switch (position){
                     case 0:
                         intent=new Intent(context, Notif_Main.class);
+                        intent.putExtra("work","Daily Expenses");
                         context.startActivity(intent);
                         break;
                 }

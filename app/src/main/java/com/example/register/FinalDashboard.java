@@ -1,8 +1,7 @@
 package com.example.register;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,9 +20,9 @@ import java.util.List;
 
 import static com.example.register.R.drawable.icons8_accuracy_96;
 import static com.example.register.R.drawable.icons8_add_96;
+import static com.example.register.R.drawable.icons8_budget_96;
 import static com.example.register.R.drawable.icons8_buying_96;
 import static com.example.register.R.drawable.icons8_coins_96;
-import static com.example.register.R.drawable.icons8_discount_96;
 import static com.example.register.R.drawable.icons8_document_48;
 import static com.example.register.R.drawable.icons8_feedback_96;
 import static com.example.register.R.drawable.icons8_inspection_96;
@@ -51,21 +50,27 @@ public class FinalDashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         discountRecyclerView = findViewById(R.id.discountedRecycler);
         categoryRecyclerView = findViewById(R.id.categoryRecycler);
-        allCategory = findViewById(R.id.allCategoryImage);
+        /*allCategory = findViewById(R.id.allCategoryImage);*/
         recentlyViewedRecycler = findViewById(R.id.recently_item);
 
 
-        allCategory.setOnClickListener(new View.OnClickListener() {
+        /*allCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(FinalDashboard.this, AllCategory.class);
                 startActivity(i);
-            }
-        });
+            }*/
+        /*});*/
 
         // adding data to model
         workModelList = new ArrayList<>();
@@ -80,7 +85,7 @@ public class FinalDashboard extends AppCompatActivity {
         dailyExpensesModelList.add(new DailyExpensesModel("Daily Expenses",0, icons8_coins_96));
         dailyExpensesModelList.add(new DailyExpensesModel("Purchases",1, icons8_buying_96));
         dailyExpensesModelList.add(new DailyExpensesModel("Maintenance",2, icons8_kitchenwares_96));
-        dailyExpensesModelList.add(new DailyExpensesModel("Payments Due",3, icons8_discount_96));
+        dailyExpensesModelList.add(new DailyExpensesModel("Payments Due",3, icons8_budget_96));
         dailyExpensesModelList.add(new DailyExpensesModel("Others",4, icons8_paid_96));
 
         // adding data to model

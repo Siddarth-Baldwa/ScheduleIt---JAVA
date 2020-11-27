@@ -10,6 +10,7 @@ import android.provider.ContactsContract;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -45,10 +46,16 @@ public class TaskAdderActivity extends AppCompatActivity {
     private static final int PICK_CONTACT_CALL = 1, PICK_CONTACT_MSG = 2;
     String[] rep = new String[]{"None", "Daily", "Weekly", "Monthly", "Yearly"};
     String[] col = new String[]{"Black", "Red", "Green", "Yellow", "Purple"};
-
+    String workvalue1 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_task_adder);
         repeat = 0;
         Bundle extras = getIntent().getExtras();
@@ -62,6 +69,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                 settask();
             }
         });
+        workvalue1 = getIntent().getStringExtra("work");
     }
 
     public void setdate(View view) {
@@ -173,9 +181,9 @@ public class TaskAdderActivity extends AppCompatActivity {
             if (curuser != null) {
                 String uid = curuser.getUid();
                 if (noww == 2) {
-                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder");
+                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder").child(workvalue1);
                 } else {
-                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(workvalue1);
                 }
                 Map<String, Object> val = new TreeMap<>();
                 Info info;
@@ -188,6 +196,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                 db.updateChildren(val);
             }
             Intent intent = new Intent(com.example.register.TaskAdderActivity.this, Notif_Main.class);
+            intent.putExtra("work",workvalue1);
             startActivity(intent);
         }
     }

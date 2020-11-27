@@ -31,16 +31,18 @@ public class PastTaskActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Exampleitem> mexamplelist;
     DatabaseReference db;
+    String workvalue1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_task);
         mexamplelist = new ArrayList<>();
+        workvalue1 = getIntent().getStringExtra("work");
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if (curuser != null) {
             String uid = curuser.getUid();
-            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask").child(workvalue1);
             db.addValueEventListener(new ValueEventListener() {
 
                 @Override
@@ -73,6 +75,7 @@ public class PastTaskActivity extends AppCompatActivity {
 
         }
         buildrecylerview();
+
     }
 
     public void removeitem(int position) {
@@ -80,7 +83,7 @@ public class PastTaskActivity extends AppCompatActivity {
         String delid = curitem.getFull();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask").child(delid);
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask").child(workvalue1).child(delid);
         db.setValue(null);
         mexamplelist.remove(position);
         mAdapter.notifyDataSetChanged();
@@ -132,7 +135,7 @@ public class PastTaskActivity extends AppCompatActivity {
             String delid = curitem.getFull();
             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
             String uid = curuser.getUid();
-            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask").child(delid);
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask").child(workvalue1).child(delid);
             db.setValue(null);
             mexamplelist.remove(position);
             mAdapter.notifyDataSetChanged();
@@ -150,7 +153,7 @@ public class PastTaskActivity extends AppCompatActivity {
                 FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
                 if (curuser != null) {
                     String uid = curuser.getUid();
-                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
+                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask").child(workvalue1);
                     db.setValue(null);
                     mexamplelist.clear();
                 }

@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,9 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
@@ -33,7 +32,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -53,8 +51,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeMap;
 
-public class Notif_Main extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Notif_Main extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Exampleadapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -67,6 +64,10 @@ public class Notif_Main extends AppCompatActivity
     DatabaseReference db, dbb;
     private LinearLayout no_task_ll;
     public static int now = 0, firstrun = 0;
+/*    Intent intentReceived = getIntent();
+    Bundle data = intentReceived.getExtras();
+    String  workvalue1 = data.getString("work");*/
+    String workvalue1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +76,14 @@ public class Notif_Main extends AppCompatActivity
         setContentView(R.layout.notif_activity_main);
         setTitle("Register");
         settvcolor();
+        workvalue1 = getIntent().getStringExtra("work");
+        Log.i("PARAMS","passed value is " + workvalue1);
         mexamplelist = new ArrayList<>();
         mreminderlist = new ArrayList<>();
         no_task_ll = findViewById(R.id.notask);
         no_task_ll.setVisibility(View.GONE);
         if (firstrun == 0) {
-            progressDialog = new ProgressDialog(com.example.register.Notif_Main.this);
+            progressDialog = new ProgressDialog(Notif_Main.this);
             progressDialog.setTitle("Loading");
             progressDialog.setMessage("Getting your tasks...");
             progressDialog.show();
@@ -98,7 +101,7 @@ public class Notif_Main extends AppCompatActivity
         if (curuser != null) {
             String uid = curuser.getUid();
             if (now == 2) {
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder");
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder").child(workvalue1);
                 db.addValueEventListener(new ValueEventListener() {
 
                     @Override
@@ -127,7 +130,7 @@ public class Notif_Main extends AppCompatActivity
                     }
                 });
             } else {
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(workvalue1);
                 db.addValueEventListener(new ValueEventListener() {
 
                     @Override
@@ -161,25 +164,26 @@ public class Notif_Main extends AppCompatActivity
         if (now != 2) {
             refreshTask();
         }
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        /*Toolbar toolbar = findViewById(R.id.toolbar);*/
         /*setSupportActionBar(toolbar);*/
         ExtendedFloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(com.example.register.Notif_Main.this, TaskAdderActivity.class);
+                Intent intent = new Intent(Notif_Main.this, TaskAdderActivity.class);
                 intent.putExtra("now", now);
+                intent.putExtra("work",workvalue1);
                 startActivity(intent);
             }
         });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        /*DrawerLayout drawer = findViewById(R.id.drawer_layout);*/
+        /*NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);*/
 
 
 
@@ -192,7 +196,7 @@ public class Notif_Main extends AppCompatActivity
                             msg = "Failed";
                         }
 
-                        Toast.makeText(com.example.register.Notif_Main.this, msg, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Notif_Main.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -212,7 +216,7 @@ public class Notif_Main extends AppCompatActivity
                             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
                             final String uid = curuser.getUid();
                             if (curuser != null) {
-                                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(workvalue1);
                                 db.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -236,12 +240,12 @@ public class Notif_Main extends AppCompatActivity
                                             } else if (curtime.compareTo(tasktime) > 0) {
                                                 String repeat = hmp.get("repeat");
                                                 if (repeat.equals("None")) {
-                                                    dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
+                                                    dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask").child(workvalue1);
                                                     Map<String, Object> val = new TreeMap<>();
                                                     Info info = new Info(hmp.get("title"), hmp.get("des"), hmp.get("date"), hmp.get("time"), "None", date, hmp.get("marker"));
                                                     val.put(date, info);
                                                     dbb.updateChildren(val);
-                                                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(date);
+                                                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(workvalue1).child(date);
                                                     db.setValue(null);
                                                 } else {
                                                     ArrayList<Integer> dates;
@@ -287,9 +291,9 @@ public class Notif_Main extends AppCompatActivity
                                                     String date2 = curdate + hmp.get("time") + date.substring(12, 15);
                                                     Info info2 = new Info(hmp.get("title"), hmp.get("des"), curdate, hmp.get("time"), repeat, date2, hmp.get("marker"));
                                                     val2.put(date2, info2);
-                                                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(date);
+                                                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(workvalue1).child(date);
                                                     db.setValue(null);
-                                                    dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                                                    dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(workvalue1);
                                                     dbb.updateChildren(val2);
                                                 }
                                             }
@@ -301,10 +305,8 @@ public class Notif_Main extends AppCompatActivity
                                             }
                                         }
                                     }
-
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                                     }
                                 });
                             }
@@ -343,10 +345,11 @@ public class Notif_Main extends AppCompatActivity
             notificationManager.createNotificationChannel(notificationChannel);
         }
         Intent resintent = new Intent(this, com.example.register.Notif_Main.class);
+        resintent.putExtra("work","chodu2");
         PendingIntent respenindent = PendingIntent.getActivity(this, 1, resintent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id);
         builder.setSmallIcon(R.drawable.icons8_today_96);
-        builder.setContentTitle("My Day");
+        builder.setContentTitle("Infinity");
         builder.setContentText("You have task now. Tap to open app.");
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setContentIntent(respenindent);
@@ -360,7 +363,7 @@ public class Notif_Main extends AppCompatActivity
         String delid = curitem.getFull();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(delid);
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(workvalue1).child(delid);
         db.setValue(null);
         mexamplelist.remove(position);
         mAdapter.notifyDataSetChanged();
@@ -409,9 +412,9 @@ public class Notif_Main extends AppCompatActivity
             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
             String uid = curuser.getUid();
             if (now == 2) {
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder").child(delid);
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder").child(workvalue1).child(delid);
             } else {
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(delid);
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(workvalue1).child(delid);
             }
             db.setValue(null);
             mexamplelist.remove(position);
@@ -459,18 +462,20 @@ public class Notif_Main extends AppCompatActivity
 
         if (id == R.id.actionsettings) {
             Intent intent = new Intent(this.getApplicationContext(), SettingActivity.class);
+            intent.putExtra("work",workvalue1);
             startActivity(intent);
-        } else if (id == R.id.actionaboutapp) {
-            Intent intent = new Intent(this.getApplicationContext(), AboutAppActivity.class);
+        } else if (id == R.id.actionpasttasks) {
+            Intent intent = new Intent(this.getApplicationContext(), PastTaskActivity.class);
+            intent.putExtra("work",workvalue1);
             startActivity(intent);
-        } else if (id == R.id.actionupdate) {
+        } /*else if (id == R.id.actionupdate) {
             Intent intent = new Intent(this.getApplicationContext(), UpdateActivity.class);
             startActivity(intent);
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+ /*   @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -496,7 +501,7 @@ public class Notif_Main extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+*/
     public void onTimetask(View view) {
         TextView ttv = findViewById(R.id.timetasktv);
         TextView rtv = findViewById(R.id.remindertv);

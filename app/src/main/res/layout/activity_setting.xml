@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".SettingActivity">
@@ -27,13 +27,12 @@
                 android:paddingTop="10dp"
                 android:text="Settings"
                 android:textAllCaps="true"
-                android:textColor="#326ADA"
+                android:textColor="#000000"
                 android:textSize="22dp"
-                android:textStyle="bold"
-
+                android:fontFamily="@font/bungee"
                 />
 
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
@@ -50,7 +49,7 @@
                 android:gravity="center|left"
                 android:onClick="onProfile"
                 android:text="PROFILE"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
 
             <TextView
 
@@ -74,7 +73,8 @@
                     android:layout_weight="3"
                     android:gravity="center|left"
                     android:text="VIBRATION"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/antic"
+                    android:textColor="@color/black"/>
 
                 <Switch
                     android:id="@+id/vibswitch"
@@ -96,7 +96,8 @@
                     android:layout_weight="3"
                     android:gravity="center|left"
                     android:text="NOTIFICATION SOUND"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/antic"
+                    android:textColor="@color/black" />
 
                 <Switch
                     android:id="@+id/notisoundswitch"
@@ -117,7 +118,8 @@
                     android:layout_weight="3"
                     android:gravity="center|left"
                     android:text="FULLSCREEN VIEW"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/antic"
+                    android:textColor="@color/black" />
 
                 <Switch
                     android:id="@+id/fullswitch"
@@ -139,7 +141,8 @@
                     android:layout_weight="3"
                     android:gravity="center|left"
                     android:text="STATUSBAR NOTIFICATION"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/antic"
+                    android:textColor="@color/black" />
 
                 <Switch
                     android:id="@+id/notishowswitch"
@@ -150,7 +153,7 @@
                 </Switch>
             </LinearLayout>
 
-            <TextView
+           <!-- <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -167,7 +170,7 @@
                 android:gravity="center|left"
                 android:onClick="onFeed"
                 android:text="FEEDBACK"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
 
         </LinearLayout>
     </ScrollView>

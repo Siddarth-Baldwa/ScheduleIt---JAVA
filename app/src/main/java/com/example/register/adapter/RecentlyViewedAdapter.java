@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.register.CalenderActivity;
 import com.example.register.HomeActivity;
+import com.example.register.ImpDocuments;
 import com.example.register.R;
 import com.example.register.model.RecentlyViewed;
 
@@ -59,7 +60,7 @@ public class RecentlyViewedAdapter extends RecyclerView.Adapter<RecentlyViewedAd
                         context.startActivity(intent);
                         break;
                     case 1:
-                        intent=new Intent(context, HomeActivity.class);
+                        intent=new Intent(context, ImpDocuments.class);
                         intent.putExtra("meetings","Other_ImpDocuments");
                         context.startActivity(intent);
                         break;

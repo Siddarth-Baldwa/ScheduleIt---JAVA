@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.register.HomeActivity;
+import com.example.register.Notif_Main;
 import com.example.register.R;
 import com.example.register.model.WorkModel;
 
@@ -45,18 +46,21 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.DiscountedProd
                 Intent intent;
                 switch (position){
                     case 0:
-                        intent=new Intent(context, HomeActivity.class);
-                        intent.putExtra("meetings","Meetings");
+                        intent=new Intent(context, Notif_Main.class);
+                       /* Bundle data = new Bundle();
+                        data.putString("work","Meetings");
+                        intent.putExtras(data);*/
+                        intent.putExtra("work","Meetings");
                         context.startActivity(intent);
                         break;
                     case 1:
-                        intent=new Intent(context, HomeActivity.class);
-                        intent.putExtra("meetings","Mails");
+                        intent=new Intent(context, Notif_Main.class);
+                        intent.putExtra("work","Mails");
                         context.startActivity(intent);
                         break;
                     case 2:
                         intent=new Intent(context, HomeActivity.class);
-                        intent.putExtra("meetings","Queries");
+                        intent.putExtra("meetings","Project Goals");
                         context.startActivity(intent);
                         break;
 
@@ -66,8 +70,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.DiscountedProd
                         context.startActivity(intent);
                         break;
                     case 4:
-                        intent=new Intent(context, HomeActivity.class);
-                        intent.putExtra("meetings","Others");
+                        intent=new Intent(context, Notif_Main.class);
+                        intent.putExtra("work","Others");
                         context.startActivity(intent);
                         break;
                 }
