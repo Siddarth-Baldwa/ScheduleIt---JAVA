@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity {
         createRequest();
 
         findViewById(R.id.google_signin).setOnClickListener((view) -> {
-                signIn();
+            signIn();
         });
 
         // Facebook Login
@@ -120,7 +120,7 @@ public class Login extends AppCompatActivity {
             public void onError(FacebookException error) {
             }
         });
-}
+    }
 
     private void createRequest() {
         // Configure Google Sign In
@@ -279,15 +279,11 @@ public class Login extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-
                     email.setError(null);
                     email.setErrorEnabled(false);
                     Log.i("MY PASSWORD","before calling db");
                     String passwordFromDB = dataSnapshot.child(userEnteredEmail).child("password").getValue(String.class);
                     Log.i("MY PASSWORD","after calling db");
-
-
-
                     if (passwordFromDB.equals(userEnteredPassword)) {
                         email.setError(null);
                         email.setErrorEnabled(false);
@@ -304,7 +300,6 @@ public class Login extends AppCompatActivity {
                         intent.putExtra("phoneno", phoneNoFromDB);
                         intent.putExtra("password", passwordFromDB);
                         intent.putExtra("profession", professionFromDB);
-
                         startActivity(intent);
                     } else {
                         password.setError("Wrong Password");

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.register.Login"
     android:orientation="vertical"
-    android:background="@drawable/sai_abhinivesh_burla_wev76kgeysk_01__1_"
+    android:background="@drawable/light_color_pattern_b5077b92_6756_413a_96c8_f069789ed452"
     android:padding="20dp"
     >
 
@@ -46,7 +46,8 @@
             android:hint="Email"
             android:transitionName="tran_username"
             android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black">
+            app:boxStrokeColor="@color/black"
+            app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -67,6 +68,7 @@
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black"
             app:passwordToggleTint="@color/black"
+            app:hintTextColor="@color/black"
             >
 
             <com.google.android.material.textfield.TextInputEditText

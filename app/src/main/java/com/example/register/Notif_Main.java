@@ -236,7 +236,7 @@ public class Notif_Main extends AppCompatActivity {
                                                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                                                     showNotification1();
                                                 } else {
-                                                    showNotification2();
+                                                    showNotification2(hmp.get("title"),hmp.get("des"));
                                                 }
                                             } else if (curtime.compareTo(tasktime) > 0) {
                                                 String repeat = hmp.get("repeat");
@@ -333,7 +333,7 @@ public class Notif_Main extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void showNotification2() {
+    private void showNotification2(String notif_title, String notif_des) {
         String id = "main_channel";
         NotificationManager notificationManager = (NotificationManager) getSystemService(getApplicationContext().NOTIFICATION_SERVICE);
         CharSequence name = "Channel Name";
@@ -351,7 +351,9 @@ public class Notif_Main extends AppCompatActivity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id);
         builder.setSmallIcon(R.drawable.icons8_today_96);
         builder.setContentTitle("Infinity");
-        builder.setContentText("You have task now. Tap to open app.");
+        builder.setContentText(notif_title);
+        builder.setStyle(new NotificationCompat.BigTextStyle()
+                .bigText(notif_des));
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setContentIntent(respenindent);
         builder.setAutoCancel(true);

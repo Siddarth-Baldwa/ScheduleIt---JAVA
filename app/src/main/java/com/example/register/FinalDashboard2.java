@@ -30,15 +30,15 @@ import static com.example.register.R.drawable.icons8_budget_96;
 import static com.example.register.R.drawable.icons8_buying_96;
 import static com.example.register.R.drawable.icons8_coins_96;
 import static com.example.register.R.drawable.icons8_document_48;
-import static com.example.register.R.drawable.icons8_feedback_96;
-import static com.example.register.R.drawable.icons8_inspection_96;
+import static com.example.register.R.drawable.icons8_homework_96;
 import static com.example.register.R.drawable.icons8_kitchenwares_96;
-import static com.example.register.R.drawable.icons8_meeting_room_96;
 import static com.example.register.R.drawable.icons8_paid_96;
+import static com.example.register.R.drawable.icons8_planner_48;
+import static com.example.register.R.drawable.icons8_task_96;
 import static com.example.register.R.drawable.icons8_thursday_48;
 import static com.example.register.R.drawable.icons8_todo_list_96;
 
-public class FinalDashboard extends AppCompatActivity {
+public class FinalDashboard2 extends AppCompatActivity {
 
     RecyclerView discountRecyclerView, categoryRecyclerView, recentlyViewedRecycler;
     WorkAdapter workAdapter;
@@ -61,19 +61,20 @@ public class FinalDashboard extends AppCompatActivity {
         }
         catch (NullPointerException e){}
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         discountRecyclerView = findViewById(R.id.discountedRecycler);
         categoryRecyclerView = findViewById(R.id.categoryRecycler);
         /*allCategory = findViewById(R.id.allCategoryImage);*/
         recentlyViewedRecycler = findViewById(R.id.recently_item);
         logout = findViewById(R.id.exit);
-        switchkey = findViewById(R.id.switchkey1);
+
+        switchkey = findViewById(R.id.switchkey2);
 
         switchkey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(FinalDashboard.this,FinalDashboard2.class);
+                Intent i = new Intent(FinalDashboard2.this,FinalDashboard.class);
                 startActivity(i);
             }
         });
@@ -84,7 +85,7 @@ public class FinalDashboard extends AppCompatActivity {
                 AccessToken.setCurrentAccessToken(null);
                 FirebaseAuth.getInstance().signOut();
                 LoginManager.getInstance().logOut();
-                Intent i = new Intent(FinalDashboard.this,Login.class);
+                Intent i = new Intent(FinalDashboard2.this,Login.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
             }
@@ -100,11 +101,11 @@ public class FinalDashboard extends AppCompatActivity {
 
         // adding data to model
         workModelList = new ArrayList<>();
-        workModelList.add(new WorkModel("Meetings",0 ,icons8_meeting_room_96));
-        workModelList.add(new WorkModel("Mails",1, icons8_feedback_96));
-        workModelList.add(new WorkModel("Project Goals",2, icons8_accuracy_96));
-        workModelList.add(new WorkModel("Points to Remember",3, icons8_inspection_96));
-        workModelList.add(new WorkModel("Others",4, icons8_add_96));
+        workModelList.add(new WorkModel("Assignments",5 ,icons8_homework_96));
+        workModelList.add(new WorkModel("Test Schedule",6, icons8_planner_48));
+        workModelList.add(new WorkModel("Daily Goals",7, icons8_accuracy_96));
+        workModelList.add(new WorkModel("Submissions",8, icons8_task_96));
+        workModelList.add(new WorkModel("Others",9, icons8_add_96));
 
         // adding data to model
         dailyExpensesModelList = new ArrayList<>();
