@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
@@ -453,13 +454,33 @@ public class Notif_Main extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem menuItem = menu.findItem(R.id.search_view);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
+        if (id == R.id.search_view) {
+            return true;
+        }
         if (id == R.id.actionsettings) {
             Intent intent = new Intent(this.getApplicationContext(), SettingActivity.class);
             intent.putExtra("work",workvalue1);
@@ -468,7 +489,8 @@ public class Notif_Main extends AppCompatActivity {
             Intent intent = new Intent(this.getApplicationContext(), PastTaskActivity.class);
             intent.putExtra("work",workvalue1);
             startActivity(intent);
-        } /*else if (id == R.id.actionupdate) {
+        }
+        /*else if (id == R.id.actionupdate) {
             Intent intent = new Intent(this.getApplicationContext(), UpdateActivity.class);
             startActivity(intent);
         }*/
@@ -567,7 +589,7 @@ public class Notif_Main extends AppCompatActivity {
         f += s.substring(0, 2);
         String h = s.substring(10, 12);
         int hr = Integer.parseInt(h);
-        if (s.charAt(19) == 'P') {
+        if (s.charAt(19) == 'P' && hr != 12) {
             hr += 12;
         }
         String hour = String.valueOf(hr);

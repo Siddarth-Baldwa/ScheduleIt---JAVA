@@ -7,7 +7,8 @@
     tools:context="com.example.register.Login"
     android:orientation="vertical"
     android:background="@drawable/sai_abhinivesh_burla_wev76kgeysk_01__1_"
-    android:padding="20dp">
+    android:padding="20dp"
+    >
 
     <TextView
         android:id="@+id/logo_name"
@@ -44,7 +45,8 @@
             android:layout_height="wrap_content"
             android:hint="Email"
             android:transitionName="tran_username"
-            android:textColorHint="@color/black">
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -62,13 +64,18 @@
             android:textColor="@color/black"
             android:transitionName="tran_password"
             app:passwordToggleEnabled="true"
-            android:textColorHint="@color/black">
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:passwordToggleTint="@color/black"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textColorLink="@color/black"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

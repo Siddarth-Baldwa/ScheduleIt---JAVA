@@ -41,6 +41,7 @@
             android:hint="Full Name"
             android:textColorHint="@color/black"
             android:transitionName="tran_name"
+            app:boxStrokeColor="@color/black"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -60,6 +61,8 @@
             app:counterEnabled="true"
             app:counterMaxLength="15"
             android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:counterTextColor="@color/black"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -86,6 +89,7 @@
             android:hint="Email"
             android:transitionName="tran_email"
             android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -103,6 +107,7 @@
             android:hint="Phone No"
             android:transitionName="tran_phone"
             android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -120,7 +125,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Password"
             app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/black"
             android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -148,7 +155,8 @@
             android:hint="Profession"
             android:id="@+id/profession"
             android:transitionName="tran_profession"
-            android:textColorHint="@color/black">
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -163,6 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
             android:background="@color/black"
             android:onClick="onClick"
             android:text="REGISTER"

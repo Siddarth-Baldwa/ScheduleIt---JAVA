@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private String key = "";
     private String task;
-
+    SearchView searchView;
 
 
     @Override
@@ -71,7 +72,6 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         loader = new ProgressDialog(this);
-
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         onlineUserID = mUser.getUid();
@@ -85,6 +85,7 @@ public class HomeActivity extends AppCompatActivity {
                 addTask();
             }
         });
+
 
     }
 
@@ -142,6 +143,7 @@ public class HomeActivity extends AppCompatActivity {
 
         });
         dialog.show();
+
     }
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -178,6 +180,8 @@ public class HomeActivity extends AppCompatActivity {
             public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.retrieved_layout,parent,false);
                 return new MyViewHolder(view);
+
+
             }
         };
 

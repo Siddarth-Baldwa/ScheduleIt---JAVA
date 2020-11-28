@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,10 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Exampleadapter extends RecyclerView.Adapter<com.example.register.Exampleadapter.Exampleviewholder> {
+public class Exampleadapter extends RecyclerView.Adapter<com.example.register.Exampleadapter.Exampleviewholder> implements Filterable {
     private ArrayList<Exampleitem> mexamplelist;
+    private ArrayList<Exampleitem> allexamplelist;
     private OnItemClickListener mlistener;
+
 
     public interface OnItemClickListener {
         void onitemclick(int position);
@@ -54,6 +59,8 @@ public class Exampleadapter extends RecyclerView.Adapter<com.example.register.Ex
 
     public Exampleadapter(ArrayList<Exampleitem> examplelist) {
         mexamplelist = examplelist;
+        allexamplelist = examplelist;
+
     }
 
     @NonNull
@@ -132,4 +139,42 @@ public class Exampleadapter extends RecyclerView.Adapter<com.example.register.Ex
     public int getItemCount() {
         return mexamplelist.size();
     }
+
+
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                FilterResults filterResults = new FilterResults();
+
+                if (charSequence == null || charSequence.length() == 0) {
+                    filterResults.count = allexamplelist.size();
+                    filterResults.values = allexamplelist;
+                } else {
+                    String searchChr = charSequence.toString().toLowerCase();
+                    List<Exampleitem> resultData = new ArrayList<>();
+
+                    for (Exampleitem exampleitem: allexamplelist) {
+                        if (exampleitem.getTitle().toLowerCase().contains(searchChr) || exampleitem.getDes().toLowerCase().contains(searchChr)){
+                            resultData.add(exampleitem);
+                        }
+                    }
+                    filterResults.count = resultData.size();
+                    filterResults.values = resultData;
+                }
+                return filterResults;
+
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mexamplelist = (ArrayList<Exampleitem>) filterResults.values;
+                notifyDataSetChanged();
+
+            }
+        };
+        return filter ;
+    }
+
 }

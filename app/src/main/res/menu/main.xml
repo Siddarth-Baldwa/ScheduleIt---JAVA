@@ -13,6 +13,14 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/search_view"
+        android:title="Search View"
+        android:icon="@drawable/ic_search_black_24dp"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        />
+
     <!--<item
         android:id="@+id/actionupdate"
         android:orderInCategory="30"
