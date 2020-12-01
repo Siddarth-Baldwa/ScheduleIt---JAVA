@@ -37,7 +37,7 @@ import java.util.TreeMap;
 public class TaskAdderActivity extends AppCompatActivity {
     private Button adderset;
     private EditText addername, adderdes;
-    private String curdate = "", curtime = "", taskdate = "", tasktime = "";
+    private String curdate = "", curtime = "", taskdate = "", tasktime = "",temp_taskdate = "";
     private TextView repeattv, addertimetv, adderdatetv;
     private ImageView addermarker;
     private DatabaseReference db;
@@ -94,13 +94,15 @@ public class TaskAdderActivity extends AppCompatActivity {
                 String y = Integer.toString(year);
                 String m = Integer.toString(month);
                 String d = Integer.toString(date);
+                String mt = Integer.toString(month+1);
                 if (m.length() != 2)
                     y += "0";
                 if (d.length() != 2)
                     m += "0";
                 taskdate = y  + m + d;
+                temp_taskdate = y + mt + d;
                 adderdatetv = findViewById(R.id.adderdatetv);
-                adderdatetv.setText(parsedate(taskdate));
+                adderdatetv.setText(parsedate(temp_taskdate));
             }
         }, year, month, date);
         datePickerDialog.show();

@@ -15,9 +15,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/antic"
-        android:text="Infinity"
+        android:text="Schedule It - Professional "
         android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="16dp" />
@@ -34,7 +34,6 @@
         android:padding="8dp"
         android:layout_marginRight="5dp"
         tools:ignore="VectorDrawableCompat" />
-
 
     <ImageView
         android:id="@+id/exit"

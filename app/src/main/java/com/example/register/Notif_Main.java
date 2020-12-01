@@ -75,7 +75,7 @@ public class Notif_Main extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notif_activity_main);
-        setTitle("Register");
+        setTitle("  ");
         settvcolor();
         workvalue1 = getIntent().getStringExtra("work");
         Log.i("PARAMS","passed value is " + workvalue1);
@@ -324,7 +324,7 @@ public class Notif_Main extends AppCompatActivity {
     private void showNotification1() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, Channel_ID);
         builder.setSmallIcon(R.drawable.icons8_today_96);
-        builder.setContentTitle("Register");
+        builder.setContentTitle("Schedule It");
         builder.setContentText("You have task now.Click to open app.");
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
@@ -349,8 +349,8 @@ public class Notif_Main extends AppCompatActivity {
         resintent.putExtra("work","chodu2");
         PendingIntent respenindent = PendingIntent.getActivity(this, 1, resintent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id);
-        builder.setSmallIcon(R.drawable.icons8_today_96);
-        builder.setContentTitle("Infinity");
+        builder.setSmallIcon(R.drawable.icons8_hexa_480);
+        builder.setContentTitle("Schedule It");
         builder.setContentText(notif_title);
         builder.setStyle(new NotificationCompat.BigTextStyle()
                 .bigText(notif_des));

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.register.VerifyPhoneNo"
     android:orientation="vertical"
-    android:background="#fece2f"
+    android:background="#FFFFFF"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,11 +16,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             android:fontFamily="@font/bungee"
             android:gravity="center_horizontal"
             android:text="Verify Phone No"
-            android:layout_marginTop="100dp"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="30sp" />
 
         <TextView
@@ -43,7 +44,9 @@
                 android:id="@+id/verification_code_entered_by_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter OTP" />
+                android:hint="Enter OTP"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"/>
 
             <Button
                 android:id="@+id/verify_btn"
@@ -51,14 +54,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="#fece2f"
-                android:text="Verify" />
+                android:text="Verify"
+                android:textColor="@color/black"/>
 
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:outlineSpotShadowColor="@color/black"/>
 
         </LinearLayout>
 
